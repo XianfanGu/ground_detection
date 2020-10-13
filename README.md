@@ -24,6 +24,7 @@ Pytorch: https://pytorch.org/
 
 
 
+下载数据集：CUDA环境安装
 
 ### Step 2: 运行已训练模型测试  ###
 
