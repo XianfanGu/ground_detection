@@ -24,7 +24,7 @@ Pytorch: https://pytorch.org/
 
 
 
-下载准备数据集：https://drive.google.com/file/d/1015wN7V566LJk7toIHCkM9a1UaqShcIq/view?usp=sharing
+下载准备数据集：https://drive.google.com/drive/folders/1ZsiBpB8N_h7KxEYMkvaQApenvtQ7QEbH?usp=sharing
 将`leftImg8bit_trainvaltest.zip`
 
 
