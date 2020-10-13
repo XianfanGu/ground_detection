@@ -1,0 +1,9 @@
+# cat requirements.txt
+numpy
+zipfile
+matplotlib
+pytorch
+Pillow
+cv2
+json
+torchvision
