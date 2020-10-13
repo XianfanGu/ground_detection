@@ -24,9 +24,19 @@ Pytorch: https://pytorch.org/
 
 
 
-下载数据集：CUDA环境安装
+下载准备数据集：https://drive.google.com/file/d/1015wN7V566LJk7toIHCkM9a1UaqShcIq/view?usp=sharing
+将`leftImg8bit_trainvaltest.zip`
 
-### Step 2: 运行已训练模型测试  ###
+
+、`gtFine_trainvaltest.zip`
+
+
+、`camera_trainvaltest.zip`
+
+
+三个文件下载后放在cityscapes文件夹下面
+
+### Step 2(方法一): Python运行已训练模型测试  ###
 
 
 
