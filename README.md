@@ -63,12 +63,12 @@ Pytorch: https://pytorch.org/
 </p>
 
 <p align="center">
-  <img src="images/4.PNG" width=1200 height=300>
+  <img src="images/4.png" width=1200 height=300>
 </p>
 
 
 <p align="center">
-  <img src="images/5.PNG" width=1200 height=300>
+  <img src="images/5.png" width=1200 height=300>
 </p>
 
 构建世界坐标系基于cityscapes提供的内参外参以及如下车载摄像的结构图，具体文档可参考(https://github.com/mcordts/cityscapesScripts/blob/master/docs/csCalibration.pdf)
