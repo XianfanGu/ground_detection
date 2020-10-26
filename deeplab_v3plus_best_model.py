@@ -825,7 +825,7 @@ backbone = IntermediateLayerGetter(backbone, return_layers=return_layers)
 #resnet18 = ResNet18(pretrained=True)
 save_dir = 'new_models'
 parentModelName = "deeplab_mobilenetv2_v3_plus"
-parentEpoch = 1269
+parentEpoch = 1519
 IS_GPU = False
 model = DeepLabV3(backbone, classifier)
 checkpoint = torch.load(os.path.join(save_dir, parentModelName+'_epoch-'+str(parentEpoch)+'.pth'), map_location=torch.device('cpu'))
@@ -1018,7 +1018,7 @@ def __onclick__(event, param, image_pixel):
       temp.pop()
     points = plt.plot([ix], [iy], 'go')
     temp.extend(points)
-    if (image_pixel[row, column] > (image_pixel.mean())):
+    if(image_pixel[row,column]<1.0):
       print("x=", world_coords[0], ", y=", world_coords[1], ", z", world_coords[2])
     else:
       print("有障碍物")
@@ -1055,23 +1055,23 @@ for i, data in enumerate(testloader_1):
   out_img = img.numpy().copy()
   alpha = 0.4
   for id in range(out.shape[1]):
-    # out = torch.sum(out,dim=1)
-    # print()
-    Img = np.ones(out_img.shape, out_img.dtype)
-    Img[0, :, :] = trainId2label[id].color[0] * Img[0, :, :]
-    Img[1, :, :] = trainId2label[id].color[1] * Img[1, :, :]
-    Img[2, :, :] = trainId2label[id].color[2] * Img[2, :, :]
-    Img = Img / 255.0
-    mask_id = torchvision.utils.make_grid(out[:, id, :, :])
-    mask_id = mask_id.detach().numpy()
-    # mask_id = (mask_id - mask_id.mean()) / mask_id.std()
-    # mask_id[mask_id<(mask_id.mean()-mask_id.std())]=0
-    # mask_id = mask_id.clip(0,1)
-    mask = Img * mask_id
-    out_img = cv2.addWeighted(mask, alpha, out_img, 1.0, 0, out_img)
+    if (id == 0):
+      Img = np.ones(out_img.shape, out_img.dtype)
+      Img[0, :, :] = trainId2label[id].color[0] * Img[0, :, :]
+      Img[1, :, :] = trainId2label[id].color[1] * Img[1, :, :]
+      Img[2, :, :] = trainId2label[id].color[2] * Img[2, :, :]
+      Img = Img / 255.0
+      mask_id = torchvision.utils.make_grid(out[:, id, :, :])
+      mask_id = mask_id.detach().numpy()
+      # mask_id = (mask_id - mask_id.mean()) / mask_id.std()
+      # mask_id[mask_id<(mask_id.mean()-mask_id.std())]=0
+      # mask_id = mask_id.clip(0,1)
+      mask = Img * mask_id
+      out_img = cv2.addWeighted(mask, alpha, out_img, 1.0, 0, out_img)
   plot_img = torch.from_numpy(out_img) / 2.0 + 0.5  # unnormalize
   npimg = plot_img.numpy()
   fig = plt.figure()
-  coords = fig.canvas.callbacks.connect('button_press_event', lambda event: __onclick__(event, param, out[0, 6, :, :]))
+  ground_indicator = out[0, 0, :, :]
+  coords = fig.canvas.callbacks.connect('button_press_event', lambda event: __onclick__(event, param, ground_indicator))
   plt.imshow(np.transpose(npimg, (1, 2, 0)))
   plt.show()
