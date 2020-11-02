@@ -825,7 +825,7 @@ backbone = IntermediateLayerGetter(backbone, return_layers=return_layers)
 #resnet18 = ResNet18(pretrained=True)
 save_dir = 'new_models'
 parentModelName = "deeplab_mobilenetv2_v3_plus"
-parentEpoch = 1519
+parentEpoch = 1669
 IS_GPU = False
 model = DeepLabV3(backbone, classifier)
 checkpoint = torch.load(os.path.join(save_dir, parentModelName+'_epoch-'+str(parentEpoch)+'.pth'), map_location=torch.device('cpu'))
